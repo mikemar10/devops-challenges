@@ -6,8 +6,7 @@
 # web3) and returns the IP and login credentials for each server. Use any
 # image you want. Worth 1 point
 
-require 'pry'
-require 'bundler/setup'
+require "bundler/setup"
 require "inifile"
 require "fog" 
 
