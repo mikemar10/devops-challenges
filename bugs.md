@@ -1,5 +1,8 @@
 This is a collection of bugs in Fog and/or Rackspace products I stumbled across during this process.
 
+==ALL==
+So far my region selection seems to be failing for challenge3 and challenge5.
+
 ==Cloud Databases==
 ===Fog===
 Setting the rackspace_region field appears to do nothing.  I used :ord but my databases built in dfw.

@@ -46,7 +46,7 @@ end
 puts "Creating database db_uno within newly created instance"
 service.create_database(instance_id, "db_uno")
 
-until service.list_databases(instance_id).body["databases"].first["name"] =~ /db_uno/i
+until service.list_databases(instance_id).body["databases"].select{|db| db["name"] =~ /db_uno/} != []
   sleep 2
 end
 
