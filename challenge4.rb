@@ -56,11 +56,17 @@ domain_name = ARGV[0].split('.')[-2,2].join('.')
 domain_id = service.list_domains.body["domains"].select { |d| d["name"] == domain_name }.first
 
 if domain_id.nil?
-  puts "Domain #{domain_name} does not exist, please create domain via control panel"
-  exit(-1)
+  puts "Creating domain #{domain_name}"
+  response = service.create_domains([{:name => domain_name, :email => "ipadmin@stabletransit.com"}])
+  job_id = response.body["jobId"]
+  puts "Waiting for domain creation to complete"
+  until service.callback(job_id).body["status"] =~ /COMPLETED/
+    sleep 2
+  end
+  domain_id = service.callback(job_id).body["response"]["domains"].first["id"]
+else
+  domain_id = domain_id["id"]
 end
-
-domain_id = domain_id["id"]
 
 response = service.add_records(domain_id, [{
   name: ARGV[0],

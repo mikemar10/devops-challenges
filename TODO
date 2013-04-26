@@ -1,0 +1,1 @@
+Fix up each challenge to use challange#_ rather than web as basename
