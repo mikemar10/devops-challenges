@@ -17,7 +17,7 @@ require "inifile"
 require "fog"
 
 fqdn = "www.rsdevopschallenge11.com"
-SERVER_BASE_NAME = "web"
+SERVER_BASE_NAME = "challenge11_"
 
 # Use a credential file in the format:
 #   [rackspace_cloud]
@@ -128,6 +128,7 @@ puts "Enabling SSL termination on LB"
 lb_service.set_ssl_termination(lb, 443, File.read("challenge11.key"), File.read("challenge11.crt"), { enabled: true })
 
 
+service_info[:provider] = "Rackspace"
 dns_service = Fog::DNS.new(service_info)
 
 # Check for existence of domain
@@ -155,11 +156,12 @@ response = dns_service.add_records(domain_id, [{
 }])
 
 if (200..299).include? response.status 
-  puts "A Record #{fqdn} => #{server.addresses["public"][-1]["addr"]} successfully created"
+  puts "A Record #{fqdn} => #{lb_service.get_load_balancer(lb).body["loadBalancer"]["virtualIps"].first["address"]} successfully created"
 else
   puts "There was a problem submitting this record"
 end
 
+service_info.delete(:provider)
 cbs_service = Fog::Rackspace::BlockStorage.new(service_info)
 
 puts "Creating CBS volumes"
