@@ -202,7 +202,7 @@ end
 
 puts "Deleting load balancers"
 
-lb_service_ord.loadbalancers.each do |lb|
+lb_service_ord.load_balancers.each do |lb|
   begin
     lb_service_ord.delete_load_balancer(lb.id)
   rescue
@@ -212,7 +212,7 @@ lb_service_ord.loadbalancers.each do |lb|
 end
 
 
-lb_service_dfw.loadbalancers.each do |lb|
+lb_service_dfw.load_balancers.each do |lb|
   begin
     lb_service_dfw.delete_load_balancer(lb.id)
   rescue
