@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/fog/fog.git
-  revision: 7b0cd244a8cbc913e7d657bbe153be34adfc7d2c
+  revision: ca53b9993e6ab4e63a5cb4a6d452182d5485b9a4
   specs:
     fog (1.10.1)
       builder
@@ -23,10 +23,13 @@ GEM
     json (1.7.7)
     mime-types (1.23)
     multi_json (1.7.2)
+    multimap (1.1.2)
     net-scp (1.1.0)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.7)
     nokogiri (1.5.9)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     ruby-hmac (0.4.0)
 
 PLATFORMS
@@ -36,3 +39,5 @@ DEPENDENCIES
   fog!
   inifile
   multi_json
+  multimap
+  rest-client
